@@ -20,20 +20,24 @@ public class Program
 				Console.Write(" если хотите узнать площадь " + available_figures[k] + "а или ");
 			}
 			Console.Write(Prompt(variants_of_figure - 3));
-			Console.Write(", если хотите узнать площадь " + available_figures[variants_of_figure - 3] + "а");
+			Console.Write(", если хотите узнать площадь " + available_figures[variants_of_figure - 3] + "а: ");
+			double[] sides = ReadValue();
+			int sides_length = sides.Length;
+			int has_figure = Array.IndexOf(available_figures, sides_length.ToString());
+			if(has_figure != -1) {
+				Console.Write(PrintResult(Area(sides_length, sides)));
+			} else {
+				Console.Write("Мы не можем вычислить площадь фигуры с числом параметров: " + sides_length);
+				Main();
+			}
 		} else {
-			Console.Write(Prompt(figure_index));
+			Console.Write(Prompt(figure_index) + ": ");
+			//double[] sides = ReadValue();
+			Console.Write(IsWrongInput(figure_index));
 		}
-		Console.Write(": ");
-		double result = Area(type, ReadValue());
-		if(result == -1) {
-		Console.WriteLine("Неизвестная фигура");
-		} else if(result == 0) {
-		Console.WriteLine("Необходимо вводить длины сторон через запятую, например: 3,4,5");
-		Main();
-		} else {
-		Console.WriteLine(result);
-		}
+	}
+	public static string PrintResult(double S) {
+		return "Площадь равна: " + S;
 	}
 	public static double[] ReadValue() {
 		string[] sides_str = Console.ReadLine().Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
@@ -48,6 +52,21 @@ public class Program
 		catch {
 			Console.Write("Необходимо вводить параметры положительными числами. Пожалуйста, введите заново в правильном формате: ");
 			return ReadValue();
+		}
+	}
+	public static string IsWrongInput(int figure_index) {
+		double[] sides = ReadValue();
+		int sides_length = sides.Length;
+		int need_sides_length = Convert.ToInt32(available_figures[figure_index+2]);
+		if(sides_length == need_sides_length) {
+			return PrintResult(Area(sides_length, sides));
+		} else {
+			Console.Write(Prompt(figure_index) + ", отделяя дробную часть точкой. Например: ");
+			for(int l=0; l < need_sides_length - 1; ++l) {
+				Console.Write(l+"."+(l+1)+", ");
+			}
+			Console.Write("2.5 Ввести: ");
+			return IsWrongInput(figure_index);
 		}
 	}
 	public static string Prompt(int figure_index) {
@@ -65,26 +84,13 @@ public class Program
 			return i;
 		}
 	}
-	public static double Area(string type = "", params double[] sides)
-	{
-		if(type == "Треугольник") {
-		if(sides.Length == 3) {
+	public static double Area(int sides_length, double[] sides) {
+		if(sides_length==3) {
 			return TriangleArea(sides);
+		} else if(sides_length==1) {
+			return CircleArea(sides[0]);
 		} else {
 			return 0;
-		}
-		} else if(type == "Круг") {
-			return CircleArea(sides[0]);
-		} else if(type == "") {
-		if(sides.Length == 3) {
-		return TriangleArea(sides);
-		} else if(sides.Length == 1) {
-		return CircleArea(sides[0]);
-		} else {
-		return -1;
-		}
-		} else {
-		return -1;
 		}
 	}
 	public static double TriangleArea(params double[] sides) {
