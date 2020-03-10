@@ -5,7 +5,6 @@ public class Program
 	static string[] available_figures = new[]{"Треугольник", "длины трёх сторон", "3", "Круг", "радиус", "1"};
 	public static void Main()
 	{
-		
 		Console.Write("Площадь какой фигуры Вы хотите вычислить? (Доступные фигуры: ");
 		int variants_of_figure = available_figures.Length;
 		for(int j=0; j < variants_of_figure - 3; j=j+3) {
@@ -32,7 +31,6 @@ public class Program
 			}
 		} else {
 			Console.Write(Prompt(figure_index) + ": ");
-			//double[] sides = ReadValue();
 			Console.Write(IsWrongInput(figure_index));
 		}
 	}
