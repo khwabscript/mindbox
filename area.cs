@@ -27,7 +27,7 @@ public class Program
 			if(has_figure != -1) {
 				Console.Write(PrintResult(Area(sides_length, sides)));
 			} else {
-				Console.Write("Мы не можем вычислить площадь фигуры с числом параметров: " + sides_length);
+				Console.Write("Мы не можем вычислить площадь фигуры с числом параметров: " + sides_length + ". ");
 				Main();
 			}
 		} else {
@@ -37,7 +37,11 @@ public class Program
 		}
 	}
 	public static string PrintResult(double S) {
-		return "Площадь равна: " + S;
+		if(S==0) {
+			return "Фигуры с такими параметрами не существует!";
+		} else {
+			return "Площадь равна: " + S;
+		}
 	}
 	public static double[] ReadValue() {
 		string[] sides_str = Console.ReadLine().Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
@@ -65,7 +69,7 @@ public class Program
 			for(int l=0; l < need_sides_length - 1; ++l) {
 				Console.Write(l+"."+(l+1)+", ");
 			}
-			Console.Write("2.5 Ввести: ");
+			Console.Write("2.5 ");
 			return IsWrongInput(figure_index);
 		}
 	}
