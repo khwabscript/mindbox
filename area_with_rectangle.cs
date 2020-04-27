@@ -7,14 +7,14 @@ public class Program
 	{
 		Console.Write("Площадь какой фигуры Вы хотите вычислить? (Доступные фигуры: ");
 		int variants_of_figure = available_figures.Length;
-		for(int j=0; j < variants_of_figure - 3; j=j+3) {
+		for(int j = 0; j < variants_of_figure - 3; j = j + 3) {
 			Console.Write(available_figures[j] + ", ");
 		}
 		Console.Write(available_figures[variants_of_figure - 3] + ") ");
 		string type = Console.ReadLine();
 		int figure_index = Array.IndexOf(available_figures, type);
 		if(figure_index == -1) {
-			for(int k=0; k < variants_of_figure - 3; k=k+3) {
+			for(int k = 0; k < variants_of_figure - 3; k = k + 3) {
 				Console.Write(Prompt(k));
 				Console.Write(" если хотите узнать площадь " + available_figures[k] + "а или ");
 			}
@@ -35,7 +35,7 @@ public class Program
 		}
 	}
 	public static string PrintResult(double S) {
-		if(S==0) {
+		if(S == 0) {
 			return "Фигуры с такими параметрами не существует!";
 		} else {
 			return "Площадь равна: " + S;
@@ -64,8 +64,8 @@ public class Program
 			return PrintResult(Area(sides_length, sides));
 		} else {
 			Console.Write(Prompt(figure_index) + ", отделяя дробную часть точкой. Например: ");
-			for(int l=0; l < need_sides_length - 1; ++l) {
-				Console.Write(l+"."+(l+1)+", ");
+			for(int l = 0; l < need_sides_length - 1; ++l) {
+				Console.Write(l + "." + (l + 1) + ", ");
 			}
 			Console.Write("2.5 ");
 			return IsWrongInput(figure_index);
@@ -73,25 +73,25 @@ public class Program
 	}
 	public static string Prompt(int figure_index) {
 		string message = "Введите " + available_figures[figure_index + 1];
-			if(Convert.ToInt32(available_figures[figure_index+2])>1) {
+			if(Convert.ToInt32(available_figures[figure_index + 2]) > 1) {
 				return message + " через запятую";
 			} else {
 				return message;
 			}
 	}
 	public static double IsPositive(double i) {
-		if(i<0) {
+		if(i < 0) {
 			throw new ArgumentOutOfRangeException();
 		} else {
 			return i;
 		}
 	}
 	public static double Area(int sides_length, double[] sides) {
-		if(sides_length==3) {
+		if(sides_length == 3) {
 			return TriangleArea(sides);
-		} else if(sides_length==1) {
+		} else if(sides_length == 1) {
 			return CircleArea(sides[0]);
-		} else if(sides_length==2) {
+		} else if(sides_length == 2) {
 			return RectangleArea(sides);
 		} else {
 			return 0;
@@ -104,15 +104,15 @@ public class Program
 		if(a + b <= c || a + c <= b || b + c <= a) {
 			return 0;
 		} else {
-			var p = (a+b+c)/2;
-			var S = Math.Sqrt(p*(p-a)*(p-b)*(p-c));
+			var p = (a + b + c) / 2;
+			var S = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
 			return S;
 		}
 	}
 	public static double CircleArea(double radius) {
-		return Math.PI*Math.Pow(radius,2);
+		return Math.PI * Math.Pow(radius, 2);
 	}
 	public static double RectangleArea(double[] sides) {
-		return sides[0]*sides[1];
+		return sides[0] * sides[1];
 	}
 }
