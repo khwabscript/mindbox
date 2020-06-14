@@ -1,0 +1,5 @@
+- девушки с заполненным емэйлом и телефоном
+
+https://demo.mindbox.cloud/customers?filter=and%28sex%28concrete-value%28Female%29filter-mode%28Concrete%29%29%29and%28email%28filter-mode%28Present%29%29%29and%28mobile%28filter-mode%28Present%29%29%29
+
+- клиенты, у которых не было заказов
