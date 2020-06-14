@@ -3,3 +3,5 @@
 https://demo.mindbox.cloud/customers?filter=and%28sex%28concrete-value%28Female%29filter-mode%28Concrete%29%29%29and%28email%28filter-mode%28Present%29%29%29and%28mobile%28filter-mode%28Present%29%29%29
 
 - клиенты, у которых не было заказов
+
+https://demo.mindbox.cloud/customers?filter=and%28segment%28g%28CustomersWithOrders%29h%28f%29a%28f%29n%28f%29c%28f%29v%28concrete-value%28CustomersWithOrders%29filter-mode%28Concrete%29%29%29%29
